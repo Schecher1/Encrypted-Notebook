@@ -1,6 +1,6 @@
 ﻿namespace LIB_Encrypted_Notebook
 {
-    public class Class1
+    public class Dummy
     {
 
     }
