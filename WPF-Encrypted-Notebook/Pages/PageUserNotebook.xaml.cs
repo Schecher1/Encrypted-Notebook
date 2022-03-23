@@ -6,6 +6,7 @@ using LIB_Encrypted_Notebook.Database;
 using LIB_Encrypted_Notebook.DataModels;
 using LIB_Encrypted_Notebook.Encryption;
 using WPF_Encrypted_Notebook.Classes;
+using LIB_Encrypted_Notebook.UIM;
 
 namespace WPF_Encrypted_Notebook.Pages
 {

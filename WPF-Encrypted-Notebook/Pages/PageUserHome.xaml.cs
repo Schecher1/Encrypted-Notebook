@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
 using WPF_Encrypted_Notebook.Classes;
+using LIB_Encrypted_Notebook.UIM;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
@@ -22,7 +23,7 @@ namespace WPF_Encrypted_Notebook.Pages
         }
 
         private void bttn_notebooks_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserNotebook();
-        private void bttn_importExport_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new pageUserNotebooksImportExport();
+        private void bttn_importExport_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserNotebooksImportExport();
         private void bttn_delAccount_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserDelete();
         private void bttn_logout_Click(object sender, RoutedEventArgs e)
         {
@@ -30,7 +31,7 @@ namespace WPF_Encrypted_Notebook.Pages
             bttn_importExport.Visibility = Visibility.Hidden;
             bttn_logout.Visibility = Visibility.Hidden;
             bttn_notebooks.Visibility = Visibility.Hidden;
-            UserInfoManager.userLogout();
+            UserInfoManager.UserLogout();
             mw.pageMirror.Content = new PageUserLogin();
         }
     }

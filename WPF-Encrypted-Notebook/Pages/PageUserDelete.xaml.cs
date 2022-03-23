@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
 using WPF_Encrypted_Notebook.Classes;
-
+using LIB_Encrypted_Notebook.UIM;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
@@ -27,7 +27,7 @@ namespace WPF_Encrypted_Notebook.Pages
             if (tb_Password.Password == new NetworkCredential("", UserInfoManager.userPassword).Password)
             {
                 User.DeleteUser();
-                UserInfoManager.userLogout();
+                UserInfoManager.UserLogout();
                 mw.pageMirror.Content = new PageUserLogin();
             }
             else

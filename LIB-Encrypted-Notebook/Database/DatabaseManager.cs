@@ -6,10 +6,10 @@ namespace LIB_Encrypted_Notebook.Database
     public class DatabaseManager : DbContext
     {
         //link to the table
-        public DbSet<DataModelNotebook> notebook { get; set; }
-        public DbSet<DataModelSalt> salt { get; set; }
-        public DbSet<DataModelSetting> setting { get; set; }
-        public DbSet<DataModelUser> user { get; set; }
+        public DbSet<DataModelNotebook> Notebook { get; set; }
+        public DbSet<DataModelSalt> Salt { get; set; }
+        public DbSet<DataModelSetting> Setting { get; set; }
+        public DbSet<DataModelUser> User { get; set; }
 
         //DataCache ConnectionString
         private string IpAdresse { get; set; }

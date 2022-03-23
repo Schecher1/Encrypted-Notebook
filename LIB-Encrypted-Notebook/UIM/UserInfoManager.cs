@@ -1,7 +1,6 @@
-﻿using System;
-using System.Security;
+﻿using System.Security;
 
-namespace WPF_Encrypted_Notebook.Classes
+namespace LIB_Encrypted_Notebook.UIM
 {
     public class UserInfoManager
     {
@@ -11,7 +10,7 @@ namespace WPF_Encrypted_Notebook.Classes
         public static string userActivNotebook;
         public static byte[] userSalt;
 
-        public static void userLogout()
+        public static void UserLogout()
         {
             userName = null;
             userActivNotebook = null;

@@ -1,4 +1,4 @@
-﻿<Page x:Class="WPF_Encrypted_Notebook.Pages.pageUserNotebooksImportExport"
+﻿<Page x:Class="WPF_Encrypted_Notebook.Pages.PageUserNotebooksImportExport"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
