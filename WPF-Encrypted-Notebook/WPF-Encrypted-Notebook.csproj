@@ -6,10 +6,22 @@
     <RootNamespace>WPF_Encrypted_Notebook</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="DataModels\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Windows\" />
+
+    <Resource Include="Resources\Erase.png" />
+    <Resource Include="Resources\Home.PNG" />
+    <Resource Include="Resources\BackTo.png" />
+    <Resource Include="Resources\database.png" />
+    <Resource Include="Resources\error.png" />
+    <Resource Include="Resources\user.png" />
+    <Resource Include="Resources\notebook.ico" />
   </ItemGroup>
 
 </Project>

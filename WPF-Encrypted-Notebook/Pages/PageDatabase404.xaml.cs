@@ -17,9 +17,8 @@ namespace WPF_Encrypted_Notebook.Pages
 {
     public partial class PageDatabase404 : Page
     {
-        public PageDatabase404()
-        {
-            InitializeComponent();
-        }
+        MainWindow mw = (MainWindow)Application.Current.MainWindow;
+
+        public PageDatabase404() => InitializeComponent();
     }
 }

@@ -17,9 +17,16 @@ namespace WPF_Encrypted_Notebook.Pages
 {
     public partial class PageServerConfigure : Page
     {
-        public PageServerConfigure()
+        MainWindow mw = (MainWindow)Application.Current.MainWindow;
+
+        public PageServerConfigure() => InitializeComponent();
+
+        private void bttn_configure_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            if (/*DBMgr.ConfiguredServer()*/ 1 == 1)
+                mw.pageMirror.Content = new PageUserLogin();
+            else
+                mw.pageMirror.Content = new PageDatabase404();
         }
     }
 }

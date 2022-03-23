@@ -5,10 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Encrypted_Notebook.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="800"
       Title="PageUserCreate">
 
     <Grid>
-        
+        <Frame Content="" HorizontalAlignment="Center" Height="200" Margin="0,50,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.25,0.25">
+            <Frame.Background>
+                <ImageBrush ImageSource="/Resources/user.png"/>
+            </Frame.Background>
+        </Frame>
+        <Label Content="Username:" HorizontalAlignment="Center" Margin="-20,-10,180,0" VerticalAlignment="Center" Background="#00000000" Foreground="White" FontSize="25" RenderTransformOrigin="0.443,0.233"/>
+        <Label Content="Password:" HorizontalAlignment="Center" Margin="-20,110,172,0" VerticalAlignment="Center" Background="#00000000" Foreground="White" FontSize="25" Padding="5,5,-5,5"/>
+        <PasswordBox x:Name="tb_password" HorizontalAlignment="Center" Margin="170,0,0,-120"  VerticalAlignment="Center" FontSize="25" Width="230" Foreground="White" Background="#B2494949"/>
+        <TextBox x:Name="tb_username" HorizontalAlignment="Center" Margin="170,0,0,-0.1" VerticalAlignment="Center" FontSize="25" Width="230" Foreground="White" Background="#B2494949"/>
+        <Button x:Name="bttn_create" Content="Create" HorizontalAlignment="Center" Margin="0,0,0,25" VerticalAlignment="Bottom" Width="220" Height="65" Background="#B2494949" BorderBrush="#00707070" Foreground="White" FontSize="30" FontWeight="Bold" Click="bttn_create_Click"/>
+        <TextBox x:Name="msgBox_error" HorizontalAlignment="Center" Margin="0,0,0,100" TextWrapping="Wrap" Text="Error Message" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Transparent" BorderBrush="#00ABADB3" Foreground="Red" FontSize="15" IsReadOnly="True"/>
+        <Label Content="Repeat password:" HorizontalAlignment="Center" Margin="-275,0,0,-238" VerticalAlignment="Center" Background="#00000000" Foreground="White" FontSize="25" Padding="5,5,-5,5"/>
+        <PasswordBox x:Name="tb_passwordRepeat" HorizontalAlignment="Center" Margin="0,0,-170,-240" VerticalAlignment="Center" FontSize="25" Width="230" Foreground="White" Background="#B2494949"/>
+        <Button x:Name="bttn_BackTo" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" BorderBrush="#00707070" Margin="15,15,0,0" Click="bttn_BackTo_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/BackTo.png"/>
+            </Button.Background>
+        </Button>
+        <TextBox HorizontalAlignment="Center" Margin="150,360,150,0" TextWrapping="Wrap" Text="Choose a secure and long password! Although your password is hashed, it is always crackable if it is short or simple! (if the password is known, they can also decrypt your notes!)" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Transparent" BorderBrush="#00ABADB3" Foreground="Red" FontSize="15" IsReadOnly="True"/>
     </Grid>
 </Page>
