@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataModels\" />
     <Folder Include="Pages\" />
     <Folder Include="Resources\" />
     <Folder Include="Windows\" />
