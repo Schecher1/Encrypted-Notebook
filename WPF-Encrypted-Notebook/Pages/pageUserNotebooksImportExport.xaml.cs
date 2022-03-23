@@ -27,7 +27,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             lb_notebooks.Items.Clear();
             List<DataModelNotebook> notebooks = new List<DataModelNotebook>();
-           notebooks = db.GetAllNotebooks();
+           notebooks = Notebook.GetAllNotebooks();
             foreach (var notebook in notebooks)
                 lb_notebooks.Items.Add(notebook);
         }

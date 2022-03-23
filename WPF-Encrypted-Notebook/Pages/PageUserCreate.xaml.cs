@@ -46,9 +46,9 @@ namespace WPF_Encrypted_Notebook.Pages
                 return;
             }
 
-            if (db.CheckIfUserExist(tb_username.Text.ToLower()) == 0)
+            if (User.CheckIfUserExist(tb_username.Text.ToLower()) == 0)
             {
-                db.CreateUser(tb_username.Text, tb_password.Password);
+                User.CreateUser(tb_username.Text, tb_password.Password);
                 mw.pageMirror.Content = new PageUserLogin();
             }
             else

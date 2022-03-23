@@ -17,6 +17,7 @@ namespace LIB_Encrypted_Notebook.Database
         private string Username { get; set; }
         private string Password { get; set; }
 
+        //Set Connection String Vars
         public DatabaseManager(string IpAddress, string DatabaseName, string Username, string Password)
         {
             this.IpAdresse = IpAddress;
@@ -25,65 +26,21 @@ namespace LIB_Encrypted_Notebook.Database
             this.Password = Password;
         }
 
-        public void SaveNotebook(string newNotes)
-        {
-            throw new NotImplementedException();
-        }
-
+        //idk how to describe it, it works
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
             //connection string
             optionsBuilder.UseMySQL($"Server={IpAdresse};Database={DatabaseName};Uid={Username};Pwd={Password}");
         }
 
-        public void DeleteUser()
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<DataModelNotebook> GetAllNotebooks()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DbConnect()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LoginUser(string text, string password)
+        public bool IsDbConnected()
         {
             throw new NotImplementedException();
         }
 
         public int CheckIfServerIsConfigured()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ReadNotesFromNotebook()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateNotebook(string text)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteNotebook(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int CheckIfUserExist(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateUser(string text, string password)
         {
             throw new NotImplementedException();
         }

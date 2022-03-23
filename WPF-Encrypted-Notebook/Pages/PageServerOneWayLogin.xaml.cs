@@ -36,7 +36,7 @@ namespace WPF_Encrypted_Notebook.Pages
                 DatabaseManager db = new DatabaseManager(loginData[0], loginData[1], loginData[2], loginData[3]);
 
 
-                if (db.DbConnect())
+                if (db.IsDbConnected())
                 {
                     DatabaseIntance.databaseManager = db;
 

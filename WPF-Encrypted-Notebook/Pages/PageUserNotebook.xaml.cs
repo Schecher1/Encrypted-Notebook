@@ -16,7 +16,7 @@ namespace WPF_Encrypted_Notebook.Pages
 
         private void bttn_notesSave_Click(object sender, RoutedEventArgs e)
         {
-            db.SaveNotebook(tb_notes.Text);
+            Notebook.SaveNotebook(tb_notes.Text);
         }
         private void bttn_BackTo_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserHome();
 
@@ -31,7 +31,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             lb_notebooks.Items.Clear();
             List<DataModelNotebook> Notebooks = new List<DataModelNotebook>();
-            Notebooks = db.GetAllNotebooks();
+            Notebooks = Notebook.GetAllNotebooks();
             foreach (var notebook in Notebooks)
                 lb_notebooks.Items.Add(notebook);
         }
@@ -45,7 +45,7 @@ namespace WPF_Encrypted_Notebook.Pages
             else
             {
                 UserInfoManager.userActivNotebook = EncryptionManager.EncryptAES256Salt(lb_notebooks.SelectedItem.ToString(), new NetworkCredential("", UserInfoManager.userPassword).Password, UserInfoManager.userSalt);
-                tb_notes.Text = db.ReadNotesFromNotebook();
+                tb_notes.Text = Notebook.ReadNotesFromNotebook();
             }
         }
 
@@ -53,7 +53,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             if (tb_newNotebook.Text != "")
             {
-                db.CreateNotebook(tb_newNotebook.Text);
+                Notebook.CreateNotebook(tb_newNotebook.Text);
                 LoadNotebooks();
                 tb_newNotebook.Text = "";
             }
@@ -63,7 +63,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             if (lb_notebooks.SelectedIndex != -1)
             {
-                db.DeleteNotebook(lb_notebooks.SelectedItem.ToString());
+                Notebook.DeleteNotebook(lb_notebooks.SelectedItem.ToString());
                 LoadNotebooks();
             }
             else

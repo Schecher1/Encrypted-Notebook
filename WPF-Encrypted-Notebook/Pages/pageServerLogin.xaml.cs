@@ -54,7 +54,7 @@ namespace WPF_Encrypted_Notebook.Pages
 
             DatabaseManager db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
 
-            if (db.DbConnect())
+            if (db.IsDbConnected())
             {
                 if (db.CheckIfServerIsConfigured() == 1)
                     mw.pageMirror.Content = new PageUserLogin();

@@ -30,7 +30,7 @@ namespace WPF_Encrypted_Notebook.Pages
             }
             else
             {
-                if (db.LoginUser(tb_username.Text, tb_password.Password))
+                if (User.LoginUser(tb_username.Text, tb_password.Password))
                     mw.pageMirror.Content = new PageUserHome();
                 else
                 {
