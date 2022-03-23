@@ -15,19 +15,19 @@
 
   <ItemGroup>
     <Content Include="Resources\Notebook.ico" />
-  </ItemGroup>
 
-  <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="Windows\" />
+    <Folder Include="Resources\" />
+	  
+    <ProjectReference Include="..\LIB-Encrypted-Notebook\LIB-Encrypted-Notebook.csproj" />
 
     <Resource Include="Resources\Erase.png" />
     <Resource Include="Resources\Home.PNG" />
     <Resource Include="Resources\BackTo.png" />
-    <Resource Include="Resources\Batabase.png" />
+    <Resource Include="Resources\Database.png" />
     <Resource Include="Resources\Error.png" />
     <Resource Include="Resources\User.png" />
-    <Resource Include="Resources\Notebook.ico" />
   </ItemGroup>
 
 </Project>

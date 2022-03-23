@@ -11,7 +11,7 @@
     <Grid>
         <Frame Content="" HorizontalAlignment="Center" Height="250" Margin="0,50,0,0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.25,0.25">
             <Frame.Background>
-                <ImageBrush ImageSource="/Resources/error.png"/>
+                <ImageBrush ImageSource="/Resources/Error.png"/>
             </Frame.Background>
         </Frame>
         <Button x:Name="bttn_configure" Content="Configure" HorizontalAlignment="Center" Margin="0,0,0,25" VerticalAlignment="Bottom" Width="220" Height="65" Background="#B2494949" BorderBrush="#00707070" Foreground="White" FontSize="30" FontWeight="Bold" Click="bttn_configure_Click"/>

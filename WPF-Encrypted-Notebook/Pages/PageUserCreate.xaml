@@ -11,7 +11,7 @@
     <Grid>
         <Frame Content="" HorizontalAlignment="Center" Height="200" Margin="0,50,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.25,0.25">
             <Frame.Background>
-                <ImageBrush ImageSource="/Resources/user.png"/>
+                <ImageBrush ImageSource="/Resources/User.png"/>
             </Frame.Background>
         </Frame>
         <Label Content="Username:" HorizontalAlignment="Center" Margin="-20,-10,180,0" VerticalAlignment="Center" Background="#00000000" Foreground="White" FontSize="25" RenderTransformOrigin="0.443,0.233"/>

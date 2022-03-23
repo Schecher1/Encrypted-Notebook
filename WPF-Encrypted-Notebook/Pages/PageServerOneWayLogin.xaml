@@ -16,7 +16,7 @@
         </Button>
         <Frame Content="" HorizontalAlignment="Center" Height="250" Margin="0,50,0,0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.25,0.25">
             <Frame.Background>
-                <ImageBrush ImageSource="/Resources/database.png"/>
+                <ImageBrush ImageSource="/Resources/Database.png"/>
             </Frame.Background>
         </Frame>
         <PasswordBox x:Name="tb_filePassword" HorizontalAlignment="Center" Margin="-20,-250,-190,-340" VerticalAlignment="Center" FontSize="20" Width="230" Foreground="White" Background="#B2494949" Height="35"/>

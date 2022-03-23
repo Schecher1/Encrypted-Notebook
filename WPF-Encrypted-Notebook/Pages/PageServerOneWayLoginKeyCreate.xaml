@@ -16,7 +16,7 @@
         </Button>
         <Frame Content="" HorizontalAlignment="Center" Height="250" Margin="0,50,0,0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.25,0.25">
             <Frame.Background>
-                <ImageBrush ImageSource="/Resources/database.png"/>
+                <ImageBrush ImageSource="/Resources/Database.png"/>
             </Frame.Background>
         </Frame>
         <Label Content="Server-IP:" HorizontalAlignment="Center" Margin="0,-134,200,0" VerticalAlignment="Center" Background="#00000000" Foreground="White" FontSize="25" RenderTransformOrigin="0.443,0.233"/>
