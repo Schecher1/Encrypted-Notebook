@@ -66,20 +66,20 @@ namespace WPF_Encrypted_Notebook.Pages
                 return;
             }
 
-            //DBMgr.connectionString(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
+            DatabaseManager db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
 
-            //if (DBMgr.dbConnect() == "successfully connected to the database!")
-            //{
-            //    if (DBMgr.checkIfServerIsConfigured() == 1)
-            //        mw.pageMirror.Content = new PageUserLogin();
-            //    else
-            //        mw.pageMirror.Content = new PageServerConfigure();
-            //}
-            //else
-            //{
-            //    msgBox_error.Text = ("No connection could be established");
-            //    msgBox_error.Visibility = Visibility.Visible;
-            //}
+            if (db.DbConnect())
+            {
+                if (db.CheckIfServerIsConfigured() == 1)
+                    mw.pageMirror.Content = new PageUserLogin();
+                else
+                    mw.pageMirror.Content = new PageServerConfigure();
+            }
+            else
+            {
+                msgBox_error.Text = ("No connection could be established");
+                msgBox_error.Visibility = Visibility.Visible;
+            }
         }
 
         private void bttn_save_Click(object sender, RoutedEventArgs e)

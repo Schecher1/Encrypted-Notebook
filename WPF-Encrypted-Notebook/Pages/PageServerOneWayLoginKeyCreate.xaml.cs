@@ -17,6 +17,8 @@ using LIB_Encrypted_Notebook;
 using LIB_Encrypted_Notebook.Database;
 using LIB_Encrypted_Notebook.DataModels;
 using WPF_Encrypted_Notebook.Classes;
+using LIB_Encrypted_Notebook.Encryption;
+using LIB_Encrypted_Notebook.SplitSystem;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
@@ -54,16 +56,16 @@ namespace WPF_Encrypted_Notebook.Pages
                 msgBox_error.Visibility = Visibility.Visible;
                 return;
             }
-            else if (tb_serverPassword.Password.Contains(":"))
+            else if (tb_serverPassword.Password.Contains(':'))
             {
                 msgBox_error.Text = ("The password cannot contain a   ':'   !");
                 msgBox_error.Visibility = Visibility.Visible;
                 return;
             }
-            //byte[] salt = EMgr.GetNewSalt();
-            //string encryptedLoginData = EMgr.EncryptAES256Salt(($"{tb_serverIP.Text}:{tb_serverDatabase.Text}:{tb_serverUsername.Text}:{tb_serverPassword.Password}"), tb_loginPassoword.Password, salt);
-            //string[] _data = { SplitManager.SplitByteArrayIntoString(salt), encryptedLoginData };
-            //File.WriteAllLines("c2s_owl.gnm", _data);
+            byte[] salt = EncryptionManager.GetNewSalt();
+            string encryptedLoginData = EncryptionManager.EncryptAES256Salt(($"{tb_serverIP.Text}:{tb_serverDatabase.Text}:{tb_serverUsername.Text}:{tb_serverPassword.Password}"), tb_loginPassoword.Password, salt);
+            string[] _data = { SaltSplitSystem.SplitByteArrayIntoString(salt), encryptedLoginData };
+            File.WriteAllLines("c2s_owl.gnm", _data);
             mw.pageMirror.Content = new PageServerOneWayLogin();
         }
     }

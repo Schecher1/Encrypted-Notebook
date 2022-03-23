@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 using LIB_Encrypted_Notebook;
 using LIB_Encrypted_Notebook.Database;
 using LIB_Encrypted_Notebook.DataModels;
+using LIB_Encrypted_Notebook.Encryption;
 using WPF_Encrypted_Notebook.Classes;
 
 namespace WPF_Encrypted_Notebook.Pages
@@ -26,7 +28,7 @@ namespace WPF_Encrypted_Notebook.Pages
 
         private void bttn_notesSave_Click(object sender, RoutedEventArgs e)
         {
-            //DBMgr.writeNotes(tb_notes.Text);
+            db.SaveNotebook(tb_notes.Text);
         }
         private void bttn_BackTo_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserHome();
 
@@ -40,9 +42,8 @@ namespace WPF_Encrypted_Notebook.Pages
         private void LoadNotebooks()
         {
             lb_notebooks.Items.Clear();
-
-            List<string> Notebooks = new List<string>();
-            //Notebooks = DBMgr.loadNotebooks();
+            List<DataModelNotebook> Notebooks = new List<DataModelNotebook>();
+            Notebooks = db.GetAllNotebooks();
             foreach (var notebook in Notebooks)
                 lb_notebooks.Items.Add(notebook);
         }
@@ -51,34 +52,34 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             tb_notes.Text = "";
             gp_notes.Header = ("Notes from " + lb_notebooks.SelectedItem);
-            //if (lb_notebooks.SelectedIndex == -1)
-            //    UserInfoManager.userActivNotebook = null;
-            //else
-            //{
-            //    UserInfoManager.userActivNotebook = EMgr.EncryptAES256Salt(lb_notebooks.SelectedItem.ToString(), new NetworkCredential("", UserInfoManager.userPassword).Password, UserInfoManager.userSalt);
-            //    tb_notes.Text = DBMgr.readNotes();
-            //}
+            if (lb_notebooks.SelectedIndex == -1)
+                UserInfoManager.userActivNotebook = null;
+            else
+            {
+                UserInfoManager.userActivNotebook = EncryptionManager.EncryptAES256Salt(lb_notebooks.SelectedItem.ToString(), new NetworkCredential("", UserInfoManager.userPassword).Password, UserInfoManager.userSalt);
+                tb_notes.Text = db.ReadNotesFromNotebook();
+            }
         }
 
         private void bttn_notebookCreate_Click(object sender, RoutedEventArgs e)
         {
-            //if (tb_newNotebook.Text != "")
-            //{
-            //    DBMgr.createNotebook(tb_newNotebook.Text);
-            //    LoadNotebooks();
-            //    tb_newNotebook.Text = "";
-            //}
+            if (tb_newNotebook.Text != "")
+            {
+                db.CreateNotebook(tb_newNotebook.Text);
+                LoadNotebooks();
+                tb_newNotebook.Text = "";
+            }
         }
 
         private void bttn_notebookDelete_Click(object sender, RoutedEventArgs e)
         {
-            //if (lb_notebooks.SelectedIndex != -1)
-            //{
-            //    DBMgr.deleteNotebook(lb_notebooks.SelectedItem.ToString());
-            //    LoadNotebooks();
-            //}
-            //else
-            //    MessageBox.Show("You must have selected an Notebook in the list before you can delete it!");
+            if (lb_notebooks.SelectedIndex != -1)
+            {
+                db.DeleteNotebook(lb_notebooks.SelectedItem.ToString());
+                LoadNotebooks();
+            }
+            else
+                MessageBox.Show("You must have selected an Notebook in the list before you can delete it!");
         }
     }
 }

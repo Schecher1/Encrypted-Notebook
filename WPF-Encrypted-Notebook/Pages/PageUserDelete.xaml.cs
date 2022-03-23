@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,17 +38,17 @@ namespace WPF_Encrypted_Notebook.Pages
 
         private void bttn_delete_Click(object sender, RoutedEventArgs e)
         {
-            //if (tb_Password.Password == new NetworkCredential("", UserInfoManager.userPassword).Password)
-            //{
-            //    DBMgr.deleteUser();
-            //    UserInfoManager.userLogout();
-            //    mw.pageMirror.Content = new pageUserLogin();
-            //}
-            //else
-            //{
-            //    msgBox_error.Text = ("the entered password is not correct!");
-            //    msgBox_error.Visibility = Visibility.Visible;
-            //}
+            if (tb_Password.Password == new NetworkCredential("", UserInfoManager.userPassword).Password)
+            {
+                db.DeleteUser();
+                UserInfoManager.userLogout();
+                mw.pageMirror.Content = new PageUserLogin();
+            }
+            else
+            {
+                msgBox_error.Text = ("the entered password is not correct!");
+                msgBox_error.Visibility = Visibility.Visible;
+            }
         }
     }
 }

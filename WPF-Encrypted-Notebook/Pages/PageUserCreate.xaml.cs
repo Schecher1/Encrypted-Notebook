@@ -60,16 +60,16 @@ namespace WPF_Encrypted_Notebook.Pages
                 return;
             }
 
-            //if (DBMgr.checkIfUserExist(tb_username.Text.ToLower()) == 0)
-            //{
-            //    DBMgr.createUser(tb_username.Text, tb_password.Password);
-            //    mw.pageMirror.Content = new pageUserLogin();
-            //}
-            //else
-            //{
-            //    msgBox_error.Text = ("The username is already taken!");
-            //    msgBox_error.Visibility = Visibility.Visible;
-            //}
+            if (db.CheckIfUserExist(tb_username.Text.ToLower()) == 0)
+            {
+                db.CreateUser(tb_username.Text, tb_password.Password);
+                mw.pageMirror.Content = new PageUserLogin();
+            }
+            else
+            {
+                msgBox_error.Text = ("The username is already taken!");
+                msgBox_error.Visibility = Visibility.Visible;
+            }
         }
 
 

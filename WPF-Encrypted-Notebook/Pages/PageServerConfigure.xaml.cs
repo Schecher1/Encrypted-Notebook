@@ -33,10 +33,8 @@ namespace WPF_Encrypted_Notebook.Pages
             
 
         private void bttn_configure_Click(object sender, RoutedEventArgs e)
-        {
-            DatabaseManager jaa = Classes.DatabaseIntance.databaseManager;
-            
-            if (/*DBMgr.ConfiguredServer()*/ 1 == 1)
+        {           
+            if (db.CheckIfServerIsConfigured() == 1)
                 mw.pageMirror.Content = new PageUserLogin();
             else
                 mw.pageMirror.Content = new PageDatabase404();

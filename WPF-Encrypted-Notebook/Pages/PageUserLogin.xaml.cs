@@ -44,19 +44,20 @@ namespace WPF_Encrypted_Notebook.Pages
             }
             else
             {
-                //if (DBMgr.loginUser(tb_username.Text, tb_password.Password))
-                //    mw.pageMirror.Content = new PageUserHome();
-                //else
-                //{
-                //    msgBox_error.Text = ("The login data do not match!");
-                //    msgBox_error.Visibility = Visibility.Visible;
-                //}
+                if (db.LoginUser(tb_username.Text, tb_password.Password))
+                    mw.pageMirror.Content = new PageUserHome();
+                else
+                {
+                    msgBox_error.Text = ("The login data do not match!");
+                    msgBox_error.Visibility = Visibility.Visible;
+                }
             }
         }
 
         private void bttn_BackTo_Click(object sender, RoutedEventArgs e)
         {
-            //DBMgr.dbDisconnect();
+            //TODO:   HOW TO FUCKING DISCONNECT A DB SESSION IN EF?!?!
+
             if (File.Exists("c2s_owl.gnm"))
                 mw.pageMirror.Content = new PageServerOneWayLogin();
             else

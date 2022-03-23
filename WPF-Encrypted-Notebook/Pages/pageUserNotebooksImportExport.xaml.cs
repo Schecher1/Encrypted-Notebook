@@ -38,9 +38,9 @@ namespace WPF_Encrypted_Notebook.Pages
         private void LoadNotebooks()
         {
             lb_notebooks.Items.Clear();
-            List<string> Notebooks = new List<string>();
-           // Notebooks = DBMgr.loadNotebooks();
-            foreach (var notebook in Notebooks)
+            List<DataModelNotebook> notebooks = new List<DataModelNotebook>();
+           notebooks = db.GetAllNotebooks();
+            foreach (var notebook in notebooks)
                 lb_notebooks.Items.Add(notebook);
         }
 
@@ -52,7 +52,7 @@ namespace WPF_Encrypted_Notebook.Pages
             {
                 if (cb_all.IsChecked == true)
                 {
-                   /* IEMgr.ExportAll(tb_password.Password, tb_pathExport.Text)*/;
+                   ImportExportManager.ExportAll(tb_password.Password, tb_pathExport.Text);
                     finish();
                 }
                 else if (cb_custom.IsChecked == true)
@@ -61,7 +61,7 @@ namespace WPF_Encrypted_Notebook.Pages
                         List<string> listOfNotebooks = new List<string>();
                         foreach (var notebook in lb_notebooks.SelectedItems)
                             listOfNotebooks.Add(notebook.ToString());
-                        //IEMgr.ExportCustom(tb_password.Password, tb_pathExport.Text, listOfNotebooks);
+                        ImportExportManager.ExportCustom(tb_password.Password, tb_pathExport.Text, listOfNotebooks);
                         finish();
                     }
             }
@@ -74,7 +74,7 @@ namespace WPF_Encrypted_Notebook.Pages
             if (tb_password.Password != "" || tb_password.Password == null)
                 if (tb_password.Password != "" || tb_password.Password == null)
                 {
-                    //IEMgr.ImportAll(tb_password.Password, tb_pathImport.Text);
+                    ImportExportManager.ImportAll(tb_password.Password, tb_pathImport.Text);
                     finish();
                 }
                 else

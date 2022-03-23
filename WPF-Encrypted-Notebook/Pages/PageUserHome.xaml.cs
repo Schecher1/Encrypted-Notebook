@@ -29,10 +29,10 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             this.db = DatabaseIntance.databaseManager;
 
-            //if (UserInfoManager.userID == -1)
-            //    return;
-            //InitializeComponent();
-            //bttn_logout.Content = ($"Logout ({UserInfoManager.userName})");
+            if (UserInfoManager.userID == -1)
+                return;
+            InitializeComponent();
+            bttn_logout.Content = ($"Logout ({UserInfoManager.userName})");
         }
 
         private void bttn_notebooks_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserNotebook();
@@ -44,7 +44,7 @@ namespace WPF_Encrypted_Notebook.Pages
             bttn_importExport.Visibility = Visibility.Hidden;
             bttn_logout.Visibility = Visibility.Hidden;
             bttn_notebooks.Visibility = Visibility.Hidden;
-            //UserInfoManager.userLogout();
+            UserInfoManager.userLogout();
             mw.pageMirror.Content = new PageUserLogin();
         }
     }
