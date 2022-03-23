@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Encrypted_Notebook.Pages;
+using LIB_Encrypted_Notebook.Database;
 
 namespace WPF_Encrypted_Notebook
 {
@@ -22,6 +23,11 @@ namespace WPF_Encrypted_Notebook
         public MainWindow()
         {
             InitializeComponent();
+
+            DatabaseManager db = new DatabaseManager("localhost", "ihopenothinggetdie","root","");
+
+            db.Database.EnsureCreated();
+
             if (File.Exists("c2s_owl.gnm"))
                 pageMirror.Content = new PageServerOneWayLogin();
             else
