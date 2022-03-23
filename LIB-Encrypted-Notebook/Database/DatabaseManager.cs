@@ -1,5 +1,4 @@
-﻿
-using LIB_Encrypted_Notebook.DataModels;
+﻿using LIB_Encrypted_Notebook.DataModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace LIB_Encrypted_Notebook.Database
