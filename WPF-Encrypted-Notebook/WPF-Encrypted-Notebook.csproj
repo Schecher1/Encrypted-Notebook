@@ -4,23 +4,30 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>WPF_Encrypted_Notebook</RootNamespace>
-    <Nullable>enable</Nullable>
+    <Nullable>annotations</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
+    <StartupObject>WPF_Encrypted_Notebook.App</StartupObject>
+    <ApplicationIcon>Resources\Notebook.ico</ApplicationIcon>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Notebook.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Pages\" />
-    <Folder Include="Resources\" />
     <Folder Include="Windows\" />
 
     <Resource Include="Resources\Erase.png" />
     <Resource Include="Resources\Home.PNG" />
     <Resource Include="Resources\BackTo.png" />
-    <Resource Include="Resources\database.png" />
-    <Resource Include="Resources\error.png" />
-    <Resource Include="Resources\user.png" />
-    <Resource Include="Resources\notebook.ico" />
+    <Resource Include="Resources\Batabase.png" />
+    <Resource Include="Resources\Error.png" />
+    <Resource Include="Resources\User.png" />
+    <Resource Include="Resources\Notebook.ico" />
   </ItemGroup>
 
 </Project>

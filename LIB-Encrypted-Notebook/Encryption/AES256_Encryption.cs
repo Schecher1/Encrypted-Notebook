@@ -12,7 +12,7 @@ namespace LIB_Encrypted_Notebook.Encryption
 
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    using (RijndaelManaged AES = new RijndaelManaged())
+                    using (AesManaged AES = new AesManaged())
                     {
                         AES.KeySize = 256;
                         AES.BlockSize = 128;

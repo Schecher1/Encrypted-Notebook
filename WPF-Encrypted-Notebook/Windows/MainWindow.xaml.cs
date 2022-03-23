@@ -27,10 +27,5 @@ namespace WPF_Encrypted_Notebook
             else
                 pageMirror.Content = new PageServerLogin();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

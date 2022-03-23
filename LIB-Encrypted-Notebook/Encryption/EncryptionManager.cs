@@ -5,7 +5,7 @@ namespace LIB_Encrypted_Notebook.Encryption
 {
     public class EncryptionManager
     {
-        readonly Random rng = new Random();
+        readonly static Random rng = new Random();
         private static AES256_Decryption decryption = new AES256_Decryption();
         private static AES256_Encryption encryption = new AES256_Encryption();
 
