@@ -12,15 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LIB_Encrypted_Notebook;
+using LIB_Encrypted_Notebook.Database;
+using LIB_Encrypted_Notebook.DataModels;
+using WPF_Encrypted_Notebook.Classes;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
     public partial class PageUserHome : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
+        DatabaseManager db;
+
 
         public PageUserHome()
         {
+            this.db = DatabaseIntance.databaseManager;
+
             //if (UserInfoManager.userID == -1)
             //    return;
             //InitializeComponent();

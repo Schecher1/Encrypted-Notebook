@@ -29,6 +29,7 @@ namespace LIB_Encrypted_Notebook.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+
             //connection string
             optionsBuilder.UseMySQL($"Server={IpAdresse};Database={Database};Uid={Username};Pwd={Password}");
         }

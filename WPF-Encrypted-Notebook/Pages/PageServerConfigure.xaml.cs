@@ -12,17 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LIB_Encrypted_Notebook;
+using LIB_Encrypted_Notebook.Database;
+using LIB_Encrypted_Notebook.DataModels;
+using WPF_Encrypted_Notebook.Classes;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
     public partial class PageServerConfigure : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
+        DatabaseManager db;
 
-        public PageServerConfigure() => InitializeComponent();
+
+        public PageServerConfigure()
+        {
+            InitializeComponent();
+            this.db = DatabaseIntance.databaseManager;
+        }
+            
 
         private void bttn_configure_Click(object sender, RoutedEventArgs e)
         {
+            DatabaseManager jaa = Classes.DatabaseIntance.databaseManager;
+            
             if (/*DBMgr.ConfiguredServer()*/ 1 == 1)
                 mw.pageMirror.Content = new PageUserLogin();
             else

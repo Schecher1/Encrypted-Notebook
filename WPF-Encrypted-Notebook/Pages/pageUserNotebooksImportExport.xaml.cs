@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LIB_Encrypted_Notebook;
+using LIB_Encrypted_Notebook.Database;
+using LIB_Encrypted_Notebook.DataModels;
+using WPF_Encrypted_Notebook.Classes;
 
 
 namespace WPF_Encrypted_Notebook.Pages
@@ -20,12 +24,14 @@ namespace WPF_Encrypted_Notebook.Pages
     public partial class pageUserNotebooksImportExport : Page
     {
         MainWindow mw = (MainWindow)System.Windows.Application.Current.MainWindow;
+        DatabaseManager db;
         FolderBrowserDialog fbd = new FolderBrowserDialog();
         OpenFileDialog ofd = new OpenFileDialog();
 
         public pageUserNotebooksImportExport()
         {
             InitializeComponent();
+            this.db = DatabaseIntance.databaseManager;
             LoadNotebooks();
         }
 

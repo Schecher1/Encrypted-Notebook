@@ -13,17 +13,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LIB_Encrypted_Notebook;
+using LIB_Encrypted_Notebook.Database;
+using LIB_Encrypted_Notebook.DataModels;
+using WPF_Encrypted_Notebook.Classes;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
     public partial class PageUserLogin : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
+        DatabaseManager db;
+
         private void bttn_createUser_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserCreate();
 
         public PageUserLogin()
         {
             InitializeComponent();
+            this.db = DatabaseIntance.databaseManager;
             msgBox_error.Visibility = Visibility.Hidden;
             mw.pageMirror.NavigationService.RemoveBackEntry();
         }
