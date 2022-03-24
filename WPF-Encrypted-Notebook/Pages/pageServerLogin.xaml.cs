@@ -31,7 +31,7 @@ namespace WPF_Encrypted_Notebook.Pages
             }
         }
 
-        private void bttn_login_Click(object sender, RoutedEventArgs e)
+        private async void bttn_login_Click(object sender, RoutedEventArgs e)
         {
             if (tb_serverIP.Text == "")
             {
@@ -53,6 +53,10 @@ namespace WPF_Encrypted_Notebook.Pages
             }
 
             DatabaseManager db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
+
+            await db.Database.EnsureCreatedAsync();
+
+
 
             if (db.IsDbConnected())
             {
