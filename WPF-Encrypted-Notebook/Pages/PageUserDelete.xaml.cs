@@ -24,9 +24,9 @@ namespace WPF_Encrypted_Notebook.Pages
 
         private void bttn_delete_Click(object sender, RoutedEventArgs e)
         {
-            if (tb_Password.Password == new NetworkCredential("", UserInfoManager.userPassword).Password)
+            if (tb_Password.Password == new NetworkCredential("", UserInfoManager.UserPassword).Password)
             {
-                User.DeleteUser();
+                User.DeleteUser(UserInfoManager.UserID ,UserInfoManager.UserName, new NetworkCredential("", UserInfoManager.UserPassword).Password);
                 UserInfoManager.UserLogout();
                 mw.pageMirror.Content = new PageUserLogin();
             }

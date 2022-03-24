@@ -42,10 +42,11 @@ namespace WPF_Encrypted_Notebook.Pages
             tb_notes.Text = "";
             gp_notes.Header = ("Notes from " + lb_notebooks.SelectedItem);
             if (lb_notebooks.SelectedIndex == -1)
-                UserInfoManager.userActivNotebook = null;
+                UserInfoManager.UserActivNotebook = null;
             else
             {
-                UserInfoManager.userActivNotebook = EncryptionManager.EncryptAES256Salt(lb_notebooks.SelectedItem.ToString(), new NetworkCredential("", UserInfoManager.userPassword).Password, UserInfoManager.userSalt);
+                UserInfoManager.UserActivNotebookID = lb_notebooks.SelectedIndex;
+                UserInfoManager.UserActivNotebook = EncryptionManager.EncryptAES256Salt(lb_notebooks.SelectedItem.ToString(), new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
                 tb_notes.Text = Notebook.ReadNotesFromNotebook();
             }
         }
@@ -64,7 +65,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             if (lb_notebooks.SelectedIndex != -1)
             {
-                Notebook.DeleteNotebook(lb_notebooks.SelectedItem.ToString());
+                Notebook.DeleteNotebook();
                 LoadNotebooks();
             }
             else

@@ -5,6 +5,8 @@ namespace LIB_Encrypted_Notebook.Database
 {
     public class DatabaseManager : DbContext
     {
+        static DatabaseManager db = DatabaseIntance.databaseManager;
+
         //link to the table
         public DbSet<DataModelNotebook> Notebook { get; set; }
         public DbSet<DataModelSalt> Salt { get; set; }
@@ -37,12 +39,19 @@ namespace LIB_Encrypted_Notebook.Database
 
         public bool IsDbConnected()
         {
-            throw new NotImplementedException();
+            return db.IsDbConnected();
         }
 
-        public int CheckIfServerIsConfigured()
+        public bool CheckIfServerIsConfigured()
         {
-            throw new NotImplementedException();
+            bool res;
+
+            if (db.Setting.FirstOrDefault(s => s.Setting_Name == "IsConfigured") == null)
+                res = false;
+            else
+                res = true;
+
+            return res;  
         }
     }
 }

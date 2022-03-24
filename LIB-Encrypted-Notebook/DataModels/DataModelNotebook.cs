@@ -17,6 +17,9 @@ namespace LIB_Encrypted_Notebook.DataModels
         public string? Notebook_Value { get; set; }
 
         [Required]
+        public int Notebook_Owner_ID { get; set; }
+
+        [Required]
         public DataModelSalt Notebook_Salt { get; set; }
     }
 }

@@ -16,10 +16,10 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             this.db = DatabaseIntance.databaseManager;
 
-            if (UserInfoManager.userID == -1)
+            if (UserInfoManager.UserID == -1)
                 return;
             InitializeComponent();
-            bttn_logout.Content = ($"Logout ({UserInfoManager.userName})");
+            bttn_logout.Content = ($"Logout ({UserInfoManager.UserName})");
         }
 
         private void bttn_notebooks_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserNotebook();

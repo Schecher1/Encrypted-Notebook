@@ -26,10 +26,9 @@ namespace WPF_Encrypted_Notebook.Pages
         private void LoadNotebooks()
         {
             lb_notebooks.Items.Clear();
-            List<DataModelNotebook> notebooks = new List<DataModelNotebook>();
-           notebooks = Notebook.GetAllNotebooks();
+            List<DataModelNotebook> notebooks = Notebook.GetAllNotebooks();
             foreach (var notebook in notebooks)
-                lb_notebooks.Items.Add(notebook);
+                lb_notebooks.Items.Add(notebook.Notebook_Name);
         }
 
         private void bttn_BackTo_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserHome();

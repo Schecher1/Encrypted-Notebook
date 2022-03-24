@@ -15,8 +15,5 @@ namespace LIB_Encrypted_Notebook.DataModels
         [Required]
         [MaxLength(128)]
         public string User_Password { get; set; }
-
-        [Column("Notebook_Owner_ID")]
-        public List<DataModelNotebook>? User_Notebooks { get; set; }
     }
 }

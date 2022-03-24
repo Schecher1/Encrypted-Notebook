@@ -13,14 +13,14 @@ namespace WPF_Encrypted_Notebook.Classes
         {
             List<string> exportData = new List<string>();
             exportData = ExportImport.ExportAllNotebooks(exportPassword);
-            File.WriteAllLines($@"{exportPath}\ExportAllNotebooks-From-{UserInfoManager.userName}-At-{DateTime.Now.ToString("d")}.txt", exportData);
+            File.WriteAllLines($@"{exportPath}\ExportAllNotebooks-From-{UserInfoManager.UserName}-At-{DateTime.Now.ToString("d")}.txt", exportData);
             MessageBox.Show("Attention: if you change the data in the file (it is enough only one letter!) then the file is corrupted (for EVER!)", "The export was successful", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         public static void ExportCustom(string exportPassword, string exportPath, List<string> listOfNotebooks)
         {
             List<string> exportData = new List<string>();
             exportData = ExportImport.ExportCustomNotebooks(exportPassword, listOfNotebooks);
-            File.WriteAllLines($@"{exportPath}\ExportCustomNotebooks-From-{UserInfoManager.userName}-At-{DateTime.Now.ToString("d")}.txt", exportData);
+            File.WriteAllLines($@"{exportPath}\ExportCustomNotebooks-From-{UserInfoManager.UserName}-At-{DateTime.Now.ToString("d")}.txt", exportData);
             MessageBox.Show("Attention: if you change the data in the file (it is enough only one letter!) then the file is corrupted (for EVER!)", "The export was successful", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         public static void ImportAll(string importPassword, string importPath)

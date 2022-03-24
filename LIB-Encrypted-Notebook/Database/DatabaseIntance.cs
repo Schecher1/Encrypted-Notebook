@@ -1,6 +1,6 @@
 ﻿using LIB_Encrypted_Notebook.Database;
 
-namespace WPF_Encrypted_Notebook.Classes
+namespace LIB_Encrypted_Notebook.Database
 {
     public class DatabaseIntance
     {

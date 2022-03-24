@@ -1,31 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LIB_Encrypted_Notebook.DataModels;
+using LIB_Encrypted_Notebook.UIM;
 
 namespace LIB_Encrypted_Notebook.Database
 {
     public class User
     {
-        public static int CheckIfUserExist(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool LoginUser(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+        static DatabaseManager db = DatabaseIntance.databaseManager;
 
         public static void CreateUser(string username, string password)
         {
-            throw new NotImplementedException();
+            DataModelUser newUser = new DataModelUser()
+            {
+                User_Name = Encryption.EncryptionManager.GetHash_SHA512(username.ToLower()),
+                User_Password = Encryption.EncryptionManager.GetHash_SHA512(password.ToLower())
+            };
+
+            db.User.Add(newUser);
+            db.SaveChanges();
         }
 
         public static void DeleteUser()
         {
-            throw new NotImplementedException();
+            db.Remove(UserInfoManager.ActivUserDataModel);
+            db.SaveChanges();
+        }
+
+        public static bool CheckIfUserExist(string username)
+        {
+            bool res;
+
+            if (db.User.FirstOrDefault(u => u.User_Name == Encryption.EncryptionManager.GetHash_SHA512(username.ToLower())) == null)
+                res = false;
+            else 
+                res = true;
+
+            return res;
+        }
+
+        public static bool LoginUser(string username, string password)
+        {
+            bool res;
+
+            DataModelUser? user = db.User.FirstOrDefault(u =>
+                                                                 u.User_Name == Encryption.EncryptionManager.GetHash_SHA512(username.ToLower()) &&
+                                                                 u.User_Password == Encryption.EncryptionManager.GetHash_SHA512(password.ToLower()));
+
+            if (user != null)
+            {
+                res = true;
+                UserInfoManager.ActivUserDataModel = user;
+            }
+            else
+                res = false;
+
+            return res;
         }
     }
 }
