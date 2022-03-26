@@ -19,8 +19,10 @@ namespace WPF_Encrypted_Notebook.Pages
             
 
         private void bttn_configure_Click(object sender, RoutedEventArgs e)
-        {           
-            if (db.CheckIfServerIsConfigured() == 1)
+        {
+            DatabaseIntance.databaseManager.Database.EnsureCreated();
+
+            if (DatabaseIntance.databaseManager.CheckIfServerIsConfigured())
                 mw.pageMirror.Content = new PageUserLogin();
             else
                 mw.pageMirror.Content = new PageDatabase404();

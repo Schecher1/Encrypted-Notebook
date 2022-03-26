@@ -26,7 +26,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             if (tb_Password.Password == new NetworkCredential("", UserInfoManager.UserPassword).Password)
             {
-                User.DeleteUser(UserInfoManager.UserID ,UserInfoManager.UserName, new NetworkCredential("", UserInfoManager.UserPassword).Password);
+                User.DeleteUser();
                 UserInfoManager.UserLogout();
                 mw.pageMirror.Content = new PageUserLogin();
             }

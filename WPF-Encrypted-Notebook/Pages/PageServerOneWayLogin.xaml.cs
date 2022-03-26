@@ -36,11 +36,11 @@ namespace WPF_Encrypted_Notebook.Pages
                 DatabaseManager db = new DatabaseManager(loginData[0], loginData[1], loginData[2], loginData[3]);
 
 
-                if (db.IsDbConnected())
+                if (DatabaseIntance.databaseManager.IsDbConnected())
                 {
                     DatabaseIntance.databaseManager = db;
 
-                    if (db.CheckIfServerIsConfigured() == 1)
+                    if (DatabaseIntance.databaseManager.CheckIfServerIsConfigured())
                         mw.pageMirror.Content = new PageUserLogin();
                     else
                         mw.pageMirror.Content = new PageServerConfigure();

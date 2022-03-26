@@ -2,7 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
+using LIB_Encrypted_Notebook.UIM;
 using WPF_Encrypted_Notebook.Classes;
+using LIB_Encrypted_Notebook.Encryption;
+using LIB_Encrypted_Notebook.SplitSystem;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
@@ -31,7 +34,13 @@ namespace WPF_Encrypted_Notebook.Pages
             else
             {
                 if (User.LoginUser(tb_username.Text, tb_password.Password))
+                {
+                    UserInfoManager.UserID = UserInfoManager.ActivUserDataModel.User_ID;
+                    UserInfoManager.UserName = tb_username.Text.ToLower();
+                    UserInfoManager.UserPassword = tb_password.SecurePassword;
+                    UserInfoManager.UserSalt = SaltSplitSystem.SplitStringIntoByteArray(UserInfoManager.ActivUserDataModel.User_Salt.Salt_Value);
                     mw.pageMirror.Content = new PageUserHome();
+                }
                 else
                 {
                     msgBox_error.Text = ("The login data do not match!");
@@ -42,7 +51,7 @@ namespace WPF_Encrypted_Notebook.Pages
 
         private void bttn_BackTo_Click(object sender, RoutedEventArgs e)
         {
-            //TODO:   HOW TO FUCKING DISCONNECT A DB SESSION IN EF?!?!
+            DatabaseIntance.databaseManager.DbDisconnectConnection();
 
             if (File.Exists("c2s_owl.gnm"))
                 mw.pageMirror.Content = new PageServerOneWayLogin();

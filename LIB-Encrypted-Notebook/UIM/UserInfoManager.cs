@@ -5,9 +5,9 @@ namespace LIB_Encrypted_Notebook.UIM
 {
     public class UserInfoManager
     {
+        public static int UserID;
         public static string UserName;
         public static SecureString UserPassword;
-        public static int UserID;
         public static string UserActivNotebook;
         public static byte[] UserSalt;
         public static int UserActivNotebookID;

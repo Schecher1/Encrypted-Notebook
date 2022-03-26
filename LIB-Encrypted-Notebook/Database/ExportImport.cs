@@ -13,8 +13,6 @@ namespace LIB_Encrypted_Notebook.Database
 {
     public class ExportImport
     {
-        static DatabaseManager db = DatabaseIntance.databaseManager;
-
         public static List<string> ExportAllNotebooks(string exportPassword)
         {
             List<string> exportData = new List<string>();
@@ -92,14 +90,10 @@ namespace LIB_Encrypted_Notebook.Database
                     {
                         Notebook_Name = new_EncryptedNotebookName,
                         Notebook_Value = new_EncryptedNotebookValue,
-                        Notebook_Owner_ID = UserInfoManager.UserID,
-                        Notebook_Salt = new DataModelSalt()
-                        {
-                            Salt_Value = SaltSplitSystem.SplitByteArrayIntoString(UserInfoManager.UserSalt)
-                        }
+                        Notebook_Owner_ID = UserInfoManager.UserID
                     };
 
-                    db.Notebook.Add(newNotebook);
+                    DatabaseIntance.databaseManager.Notebook.Add(newNotebook);
                 }
                 return "";
             }

@@ -15,5 +15,8 @@ namespace LIB_Encrypted_Notebook.DataModels
         [Required]
         [MaxLength(128)]
         public string User_Password { get; set; }
+
+        [Required]
+        public DataModelSalt User_Salt { get; set; }
     }
 }

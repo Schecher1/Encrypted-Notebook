@@ -12,22 +12,20 @@ namespace LIB_Encrypted_Notebook.Database
 {
     public class Notebook
     {
-        static DatabaseManager db = DatabaseIntance.databaseManager;
-
         public static void SaveNotebook(string newNotes)
         {
             DataModelNotebook editNotebook = UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID];
 
             editNotebook.Notebook_Value = EncryptionManager.EncryptAES256Salt(newNotes, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
 
-            db.SaveChanges();
+            DatabaseIntance.databaseManager.SaveChanges();
         }
 
         public static List<DataModelNotebook> GetAllNotebooks()
         {
             List<DataModelNotebook> allNotebooks = new List<DataModelNotebook>();
 
-            allNotebooks = db.Notebook.Where(n => n.Notebook_Owner_ID == UserInfoManager.UserID).ToList();
+            allNotebooks = DatabaseIntance.databaseManager.Notebook.Where(n => n.Notebook_Owner_ID == UserInfoManager.UserID).ToList();
 
             UserInfoManager.User_Notebooks = allNotebooks;
 
@@ -38,7 +36,7 @@ namespace LIB_Encrypted_Notebook.Database
         {
             string plainNotes = "";
 
-            string encryptedNotes = db.Notebook.SingleOrDefault(n => n.Notebook_ID == UserInfoManager.UserActivNotebookID).Notebook_Value;
+            string encryptedNotes = DatabaseIntance.databaseManager.Notebook.SingleOrDefault(n => n.Notebook_ID == UserInfoManager.UserActivNotebookID).Notebook_Value;
 
             plainNotes = EncryptionManager.DecryptAES256Salt(encryptedNotes, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
             
@@ -49,22 +47,23 @@ namespace LIB_Encrypted_Notebook.Database
         {
             DataModelNotebook newNotebook = new DataModelNotebook()
             {
-                Notebook_Name = notebookName,
                 Notebook_Owner_ID = UserInfoManager.UserID,
-                Notebook_Salt = new DataModelSalt()
-                {
-                    Salt_Value = SplitSystem.SaltSplitSystem.SplitByteArrayIntoString(EncryptionManager.GetNewSalt())
-                }
+
+                Notebook_Name = 
+                            EncryptionManager.EncryptAES256Salt(
+                                notebookName, 
+                                new NetworkCredential("", UserInfoManager.UserPassword).Password,
+                                UserInfoManager.UserSalt)
             };
 
-            db.Notebook.Add(newNotebook);
-            db.SaveChanges();   
+            DatabaseIntance.databaseManager.Notebook.Add(newNotebook);
+            DatabaseIntance.databaseManager.SaveChanges();   
         }
 
         public static void DeleteNotebook()
         {
-            db.Notebook.Remove(UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID]);
-            db.SaveChanges();
+            DatabaseIntance.databaseManager.Notebook.Remove(UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID]);
+            DatabaseIntance.databaseManager.SaveChanges();
         }
     }
 }

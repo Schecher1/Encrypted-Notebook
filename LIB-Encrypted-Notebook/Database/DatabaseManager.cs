@@ -1,12 +1,11 @@
 ﻿using LIB_Encrypted_Notebook.DataModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace LIB_Encrypted_Notebook.Database
 {
     public class DatabaseManager : DbContext
     {
-        static DatabaseManager db = DatabaseIntance.databaseManager;
-
         //link to the table
         public DbSet<DataModelNotebook> Notebook { get; set; }
         public DbSet<DataModelSalt> Salt { get; set; }
@@ -37,21 +36,46 @@ namespace LIB_Encrypted_Notebook.Database
         }
 
 
+        public void DbDisconnectConnection()
+        {
+            DatabaseIntance.databaseManager.Database.CloseConnection();
+            DatabaseIntance.databaseManager = null;
+        }
+
+
         public bool IsDbConnected()
         {
-            return db.IsDbConnected();
+            bool res = false;
+
+            try
+            {
+                DatabaseIntance.databaseManager.Database.OpenConnection();
+                res = true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("failed with message: Unknown database"))
+                    res = true;
+            }
+
+            return res;
         }
 
         public bool CheckIfServerIsConfigured()
         {
-            bool res;
+            bool res = true;
 
-            if (db.Setting.FirstOrDefault(s => s.Setting_Name == "IsConfigured") == null)
-                res = false;
-            else
-                res = true;
+            try
+            {
+                DatabaseIntance.databaseManager.Setting.SingleOrDefault(s => s.Setting_Name == "IsConfigured"); 
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("failed with message: Unknown database"))
+                    res = false;
+            }
 
-            return res;  
+            return res;
         }
     }
 }

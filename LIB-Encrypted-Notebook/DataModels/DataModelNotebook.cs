@@ -12,14 +12,10 @@ namespace LIB_Encrypted_Notebook.DataModels
         [MaxLength(128)]
         public string Notebook_Name { get; set; }
 
-        [Required]
         [Column(TypeName = "LONGTEXT")]
         public string? Notebook_Value { get; set; }
 
         [Required]
         public int Notebook_Owner_ID { get; set; }
-
-        [Required]
-        public DataModelSalt Notebook_Salt { get; set; }
     }
 }
