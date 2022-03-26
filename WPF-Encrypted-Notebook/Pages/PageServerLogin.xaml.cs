@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
@@ -31,7 +32,7 @@ namespace WPF_Encrypted_Notebook.Pages
             }
         }
 
-        private void bttn_login_Click(object sender, RoutedEventArgs e)
+        private async void bttn_login_Click(object sender, RoutedEventArgs e)
         {
             if (tb_serverIP.Text == "")
             {
@@ -52,11 +53,21 @@ namespace WPF_Encrypted_Notebook.Pages
                 return;
             }
 
-            DatabaseManager db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
+            try
+            {
+                DatabaseManager db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
+            }
+            catch (Exception ex)
+            {
+                msgBox_error.Text = (ex.Message);
+                msgBox_error.Visibility = Visibility.Visible;
+            }
+
+            DatabaseIntance.databaseManager = db;
 
             if (db.IsDbConnected())
             {
-                if (db.CheckIfServerIsConfigured() == 1)
+                if (db.CheckIfServerIsConfigured())
                     mw.pageMirror.Content = new PageUserLogin();
                 else
                     mw.pageMirror.Content = new PageServerConfigure();
