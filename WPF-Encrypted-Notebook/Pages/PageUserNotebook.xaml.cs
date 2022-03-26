@@ -34,7 +34,7 @@ namespace WPF_Encrypted_Notebook.Pages
             List<DataModelNotebook> Notebooks = new List<DataModelNotebook>();
             Notebooks = Notebook.GetAllNotebooks();
             foreach (var notebook in Notebooks)
-                lb_notebooks.Items.Add(notebook);
+                lb_notebooks.Items.Add(notebook.Notebook_Name);
         }
 
         private void lb_notebooks_SelectionChanged(object sender, SelectionChangedEventArgs e)

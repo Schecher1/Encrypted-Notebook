@@ -27,6 +27,11 @@ namespace LIB_Encrypted_Notebook.Database
 
             allNotebooks = DatabaseIntance.databaseManager.Notebook.Where(n => n.Notebook_Owner_ID == UserInfoManager.UserID).ToList();
 
+            for (int i = 0; i < allNotebooks.Count; i++)
+            {
+                allNotebooks[i].Notebook_Name = EncryptionManager.DecryptAES256Salt(allNotebooks[i].Notebook_Name, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
+            }
+
             UserInfoManager.User_Notebooks = allNotebooks;
 
             return allNotebooks;
@@ -36,10 +41,13 @@ namespace LIB_Encrypted_Notebook.Database
         {
             string plainNotes = "";
 
-            string encryptedNotes = DatabaseIntance.databaseManager.Notebook.SingleOrDefault(n => n.Notebook_ID == UserInfoManager.UserActivNotebookID).Notebook_Value;
+            string? encryptedNotes = DatabaseIntance.databaseManager.Notebook.SingleOrDefault(n => n.Notebook_ID == UserInfoManager.UserActivNotebookID).Notebook_Value;
 
-            plainNotes = EncryptionManager.DecryptAES256Salt(encryptedNotes, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
-            
+            if (encryptedNotes != null)
+                plainNotes = EncryptionManager.DecryptAES256Salt(encryptedNotes, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
+            else
+                plainNotes = "";
+
             return plainNotes;
         }
 

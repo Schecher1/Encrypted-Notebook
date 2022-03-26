@@ -5,6 +5,7 @@ using LIB_Encrypted_Notebook.Database;
 using WPF_Encrypted_Notebook.Classes;
 using LIB_Encrypted_Notebook.Encryption;
 using LIB_Encrypted_Notebook.SplitSystem;
+using System;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
@@ -33,8 +34,16 @@ namespace WPF_Encrypted_Notebook.Pages
                 byte[] salt = SaltSplitSystem.SplitStringIntoByteArray(_data[0]);
                 string[] loginData = EncryptionManager.DecryptAES256Salt(_data[1], tb_filePassword.Password, salt).Split(':');
 
-                DatabaseManager db = new DatabaseManager(loginData[0], loginData[1], loginData[2], loginData[3]);
-
+                try
+                {
+                    db = new DatabaseManager(loginData[0], loginData[1], loginData[2], loginData[3]);
+                    DatabaseIntance.databaseManager = db;
+                }
+                catch (Exception ex)
+                {
+                    msgBox_error.Text = (ex.Message);
+                    msgBox_error.Visibility = Visibility.Visible;
+                }
 
                 if (DatabaseIntance.databaseManager.IsDbConnected())
                 {
