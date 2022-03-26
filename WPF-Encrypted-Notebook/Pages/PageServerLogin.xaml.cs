@@ -55,7 +55,8 @@ namespace WPF_Encrypted_Notebook.Pages
 
             try
             {
-                DatabaseManager db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
+                 db = new DatabaseManager(tb_serverIP.Text, tb_serverDatabase.Text, tb_serverUsername.Text, tb_serverPassword.Password);
+                 DatabaseIntance.databaseManager = db;
             }
             catch (Exception ex)
             {
@@ -63,11 +64,10 @@ namespace WPF_Encrypted_Notebook.Pages
                 msgBox_error.Visibility = Visibility.Visible;
             }
 
-            DatabaseIntance.databaseManager = db;
-
-            if (db.IsDbConnected())
+            
+            if (DatabaseIntance.databaseManager.IsDbConnected())
             {
-                if (db.CheckIfServerIsConfigured())
+                if (DatabaseIntance.databaseManager.CheckIfServerIsConfigured())
                     mw.pageMirror.Content = new PageUserLogin();
                 else
                     mw.pageMirror.Content = new PageServerConfigure();
