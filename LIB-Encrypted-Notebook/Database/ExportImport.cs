@@ -138,8 +138,9 @@ namespace LIB_Encrypted_Notebook.Database
                     };
 
                     DatabaseIntance.databaseManager.Notebook.Add(newNotebook);
-                }
-
+            }
+                // TODO:
+                // With the wrong password and then the correct one Comes a NULL Error at Notebook_Name although there is no NULL ?!?!? 
                 DatabaseIntance.databaseManager.SaveChanges();
                 return "";
             }

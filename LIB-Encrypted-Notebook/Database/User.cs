@@ -26,7 +26,9 @@ namespace LIB_Encrypted_Notebook.Database
         public static void DeleteUser()
         {
             DatabaseIntance.databaseManager.Salt.Remove(UserInfoManager.ActivUserDataModel.User_Salt);
-            DatabaseIntance.databaseManager.Remove(UserInfoManager.ActivUserDataModel);
+            DatabaseIntance.databaseManager.User.Remove(UserInfoManager.ActivUserDataModel);
+            foreach (DataModelNotebook notebook in UserInfoManager.User_EncryptedNotebooks)
+                DatabaseIntance.databaseManager.Notebook.Remove(notebook);
             DatabaseIntance.databaseManager.SaveChanges();
         }
 

@@ -37,39 +37,65 @@ namespace WPF_Encrypted_Notebook.Pages
 
         private void bttn_export_Click(object sender, RoutedEventArgs e)
         {
-            if (tb_password.Password != "" || tb_password.Password == null)
+            if (tb_password.Password != "" && tb_password.Password != null)
             {
-                if (cb_all.IsChecked == true)
+                if (tb_pathExport.Text != "" && tb_pathExport.Text != null)
                 {
-                   ImportExportManager.ExportAll(tb_password.Password, tb_pathExport.Text);
-                    finish();
-                }
-                else if (cb_custom.IsChecked == true)
-                    if (lb_notebooks.SelectedIndex != -1)
+                    if (lb_notebooks.Items.Count != 0)
                     {
-                        List<string> listOfNotebooks = new List<string>();
-                        foreach (var notebook in lb_notebooks.SelectedItems)
-                            listOfNotebooks.Add(notebook.ToString());
-                        ImportExportManager.ExportCustom(tb_password.Password, tb_pathExport.Text, listOfNotebooks);
-                        finish();
+                        if (cb_all.IsChecked == true)
+                        {
+                            ImportExportManager.ExportAll(tb_password.Password, tb_pathExport.Text);
+                            finish();
+                        }
+                        else if (cb_custom.IsChecked == true)
+                        {
+                            if (lb_notebooks.SelectedIndex != -1)
+                            {
+                                List<string> listOfNotebooks = new List<string>();
+                                foreach (var notebook in lb_notebooks.SelectedItems)
+                                    listOfNotebooks.Add(notebook.ToString());
+                                ImportExportManager.ExportCustom(tb_password.Password, tb_pathExport.Text, listOfNotebooks);
+                                finish();
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show("Minimum one notebook must be selected!");
+                            }
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Minimum one method must be selected!");
+                        }
                     }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("There must be at least one notebook!");
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("The Path can not be empty or invalid!");
+                }
             }
             else
-                System.Windows.MessageBox.Show("The password must not be empty or invalid!");
+            {
+                System.Windows.MessageBox.Show("The password can not be empty or invalid!");
+            }
         }
 
         private void bttn_import_Click(object sender, RoutedEventArgs e)
         {
-            if (tb_password.Password != "" || tb_password.Password == null)
-                if (tb_password.Password != "" || tb_password.Password == null)
+            if (tb_password.Password != "" && tb_password.Password != null)
+                if (tb_pathImport.Text != "" && tb_pathImport.Text != null)
                 {
                     ImportExportManager.ImportAll(tb_password.Password, tb_pathImport.Text);
                     finish();
                 }
                 else
-                    System.Windows.MessageBox.Show("The password must not be empty or invalid!");
+                    System.Windows.MessageBox.Show("The Path can not be empty or invalid!");
             else
-                System.Windows.MessageBox.Show("The password must not be empty or invalid!");
+                System.Windows.MessageBox.Show("The password can not be empty or invalid!");
         }
 
         private void bttn_selectPathExport_Click(object sender, RoutedEventArgs e)
@@ -92,6 +118,8 @@ namespace WPF_Encrypted_Notebook.Pages
             tb_pathExport.Text = "";
             tb_pathImport.Text = "";
             lb_notebooks.SelectedIndex = -1;
+            cb_all.IsChecked = false;
+            cb_custom.IsChecked = false;
             LoadNotebooks();
         }
     }
