@@ -1,8 +1,6 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using LIB_Encrypted_Notebook.Database;
-using WPF_Encrypted_Notebook.Classes;
 using LIB_Encrypted_Notebook.Encryption;
 using LIB_Encrypted_Notebook.SplitSystem;
 
@@ -11,12 +9,10 @@ namespace WPF_Encrypted_Notebook.Pages
     public partial class PageServerOneWayLoginKeyCreate : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
-        DatabaseManager db;
 
         public PageServerOneWayLoginKeyCreate()
         {
             InitializeComponent();
-            this.db = DatabaseIntance.databaseManager;
             msgBox_error.Visibility = Visibility.Hidden;
         }
 

@@ -12,16 +12,14 @@ namespace WPF_Encrypted_Notebook.Pages
 
     public partial class PageUserNotebooksImportExport : Page
     {
-    public static Notebook notebook = new Notebook();
+        public static Notebook notebook = new Notebook();
         MainWindow mw = (MainWindow)System.Windows.Application.Current.MainWindow;
-        DatabaseManager db;
         FolderBrowserDialog fbd = new FolderBrowserDialog();
         OpenFileDialog ofd = new OpenFileDialog();
 
         public PageUserNotebooksImportExport()
         {
             InitializeComponent();
-            this.db = DatabaseIntance.databaseManager;
             LoadNotebooks();
         }
 

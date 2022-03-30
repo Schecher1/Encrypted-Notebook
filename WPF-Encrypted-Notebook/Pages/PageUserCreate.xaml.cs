@@ -1,21 +1,18 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
-using WPF_Encrypted_Notebook.Classes;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
     public partial class PageUserCreate : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
-        DatabaseManager db;
 
         private void bttn_BackTo_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserLogin();
 
         public PageUserCreate()
         {
             InitializeComponent();
-            this.db = DatabaseIntance.databaseManager;
             msgBox_error.Visibility = Visibility.Hidden;
         }
 

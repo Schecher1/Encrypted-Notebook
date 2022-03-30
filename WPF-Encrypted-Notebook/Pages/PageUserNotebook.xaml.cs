@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
 using LIB_Encrypted_Notebook.DataModels;
 using LIB_Encrypted_Notebook.Encryption;
-using WPF_Encrypted_Notebook.Classes;
 using LIB_Encrypted_Notebook.UIM;
 
 namespace WPF_Encrypted_Notebook.Pages
@@ -13,7 +12,6 @@ namespace WPF_Encrypted_Notebook.Pages
     public partial class PageUserNotebook : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
-        DatabaseManager db;
 
 
         private void bttn_notesSave_Click(object sender, RoutedEventArgs e)
@@ -26,7 +24,6 @@ namespace WPF_Encrypted_Notebook.Pages
         public PageUserNotebook()
         {
             InitializeComponent();
-            this.db = DatabaseIntance.databaseManager;
             LoadNotebooks();
         }
 

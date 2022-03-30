@@ -1,6 +1,5 @@
 ﻿using LIB_Encrypted_Notebook.DataModels;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace LIB_Encrypted_Notebook.Database
 {
@@ -18,6 +17,7 @@ namespace LIB_Encrypted_Notebook.Database
         private string Username { get; set; }
         private string Password { get; set; }
 
+
         //Set Connection String Vars
         public DatabaseManager(string IpAddress, string DatabaseName, string Username, string Password)
         {
@@ -27,6 +27,7 @@ namespace LIB_Encrypted_Notebook.Database
             this.Password = Password;
         }
 
+
         //idk how to describe it, it works
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,14 +36,14 @@ namespace LIB_Encrypted_Notebook.Database
             optionsBuilder.UseMySQL($"Server={IpAdresse};Database={DatabaseName};Uid={Username};Pwd={Password}");
         }
 
-
+        //closes the db connection
         public void DbDisconnectConnection()
         {
             DatabaseIntance.databaseManager.Database.CloseConnection();
             DatabaseIntance.databaseManager = null;
         }
 
-
+        //check if the database is connected
         public bool IsDbConnected()
         {
             bool res = false;
@@ -61,7 +62,8 @@ namespace LIB_Encrypted_Notebook.Database
             return res;
         }
 
-        public bool CheckIfServerIsConfigured()
+        //check if the database is Configured
+        public bool CheckIfDatabaseIsConfigured()
         {
             bool res = true;
 

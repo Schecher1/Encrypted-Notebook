@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using LIB_Encrypted_Notebook.Database;
-using WPF_Encrypted_Notebook.Classes;
 using LIB_Encrypted_Notebook.UIM;
 
 namespace WPF_Encrypted_Notebook.Pages
@@ -9,13 +7,9 @@ namespace WPF_Encrypted_Notebook.Pages
     public partial class PageUserHome : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
-        DatabaseManager db;
-
 
         public PageUserHome()
         {
-            this.db = DatabaseIntance.databaseManager;
-
             if (UserInfoManager.UserID == -1)
                 return;
             InitializeComponent();

@@ -3,8 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
 using LIB_Encrypted_Notebook.UIM;
-using WPF_Encrypted_Notebook.Classes;
-using LIB_Encrypted_Notebook.Encryption;
 using LIB_Encrypted_Notebook.SplitSystem;
 
 namespace WPF_Encrypted_Notebook.Pages
@@ -12,14 +10,12 @@ namespace WPF_Encrypted_Notebook.Pages
     public partial class PageUserLogin : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
-        DatabaseManager db;
 
         private void bttn_createUser_Click(object sender, RoutedEventArgs e) => mw.pageMirror.Content = new PageUserCreate();
 
         public PageUserLogin()
         {
             InitializeComponent();
-            this.db = DatabaseIntance.databaseManager;
             msgBox_error.Visibility = Visibility.Hidden;
             mw.pageMirror.NavigationService.RemoveBackEntry();
         }

@@ -1,9 +1,4 @@
 ﻿using LIB_Encrypted_Notebook.DataModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LIB_Encrypted_Notebook.UIM;
 using LIB_Encrypted_Notebook.Encryption;
 using System.Net;
@@ -55,6 +50,7 @@ namespace LIB_Encrypted_Notebook.Database
 
             return allNotebooksLocal;
         }
+
         public static List<DataModelNotebook> GetAllEncryptedNotebooks()
         {
             List<DataModelNotebook> allNotebooksFromDB = new List<DataModelNotebook>();

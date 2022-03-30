@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
-using WPF_Encrypted_Notebook.Classes;
 using LIB_Encrypted_Notebook.DataModels;
 
 namespace WPF_Encrypted_Notebook.Pages
@@ -9,15 +8,9 @@ namespace WPF_Encrypted_Notebook.Pages
     public partial class PageServerConfigure : Page
     {
         MainWindow mw = (MainWindow)Application.Current.MainWindow;
-        DatabaseManager db;
 
+        public PageServerConfigure() => InitializeComponent();
 
-        public PageServerConfigure()
-        {
-            InitializeComponent();
-            this.db = DatabaseIntance.databaseManager;
-        }
-            
 
         private void bttn_configure_Click(object sender, RoutedEventArgs e)
         {
@@ -30,7 +23,7 @@ namespace WPF_Encrypted_Notebook.Pages
                 });
             DatabaseIntance.databaseManager.SaveChanges();
 
-            if (DatabaseIntance.databaseManager.CheckIfServerIsConfigured())
+            if (DatabaseIntance.databaseManager.CheckIfDatabaseIsConfigured())
                 mw.pageMirror.Content = new PageUserLogin();
             else
                 mw.pageMirror.Content = new PageDatabase404();

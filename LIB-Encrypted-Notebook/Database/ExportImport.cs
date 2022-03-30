@@ -2,12 +2,7 @@
 using LIB_Encrypted_Notebook.Encryption;
 using LIB_Encrypted_Notebook.SplitSystem;
 using LIB_Encrypted_Notebook.UIM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LIB_Encrypted_Notebook.Database
 {
@@ -22,6 +17,8 @@ namespace LIB_Encrypted_Notebook.Database
 
             List<DataModelNotebook> allNotebooks = Notebook.GetAllEncryptedNotebooks();
 
+
+            //decrypts and encrypts the data with the new salt
             foreach (DataModelNotebook notebook in allNotebooks)
             {
                 new_EncryptedNotebookName =
@@ -59,7 +56,7 @@ namespace LIB_Encrypted_Notebook.Database
             List<DataModelNotebook> allNotebooks = Notebook.GetAllEncryptedNotebooks();
             List<DataModelNotebook> customNotebooks = new List<DataModelNotebook>();
 
-            //get each notebook, from all
+            //get each "custom" notebook, from all
             foreach (string notebookName in listOfNotebooks)
             {
                 string encryptedName = EncryptionManager.EncryptAES256Salt(

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using LIB_Encrypted_Notebook.Database;
-using WPF_Encrypted_Notebook.Classes;
 using LIB_Encrypted_Notebook.Encryption;
 using LIB_Encrypted_Notebook.SplitSystem;
 using System;
@@ -49,7 +48,7 @@ namespace WPF_Encrypted_Notebook.Pages
                 {
                     DatabaseIntance.databaseManager = db;
 
-                    if (DatabaseIntance.databaseManager.CheckIfServerIsConfigured())
+                    if (DatabaseIntance.databaseManager.CheckIfDatabaseIsConfigured())
                         mw.pageMirror.Content = new PageUserLogin();
                     else
                         mw.pageMirror.Content = new PageServerConfigure();
