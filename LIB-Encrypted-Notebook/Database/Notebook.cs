@@ -97,10 +97,10 @@ namespace LIB_Encrypted_Notebook.Database
             DatabaseIntance.databaseManager.SaveChanges();
         }
 
-        public static void DeleteNotebook()
+        public static void DeleteNotebook(int index)
         {
-            //DatabaseIntance.databaseManager.Notebook.Remove(UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID]);
-            //DatabaseIntance.databaseManager.SaveChanges();
+            DatabaseIntance.databaseManager.Notebook.Remove(UserInfoManager.User_EncryptedNotebooks[index]);
+            DatabaseIntance.databaseManager.SaveChanges();
         }
     }
 }

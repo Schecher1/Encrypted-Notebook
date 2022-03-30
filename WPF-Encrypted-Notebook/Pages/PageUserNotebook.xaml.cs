@@ -69,7 +69,7 @@ namespace WPF_Encrypted_Notebook.Pages
         {
             if (lb_notebooks.SelectedIndex != -1)
             {
-                Notebook.DeleteNotebook();
+                Notebook.DeleteNotebook(lb_notebooks.SelectedIndex);
                 LoadNotebooks();
             }
             else
