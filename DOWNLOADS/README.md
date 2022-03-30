@@ -9,3 +9,4 @@
 -->Anti SQL injection (EntitiyFramework)<br/>
 -->A simple blue look<br/>
 -->DotNET 6 being used<br/>
+-->Is still the beta version, errors may be there<br/>
