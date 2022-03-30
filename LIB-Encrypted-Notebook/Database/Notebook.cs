@@ -12,29 +12,58 @@ namespace LIB_Encrypted_Notebook.Database
 {
     public class Notebook
     {
-        public static void SaveNotebook(string newNotes)
+        public static void SaveNotebook(string newNotes, int lb_ID)
         {
-            DataModelNotebook editNotebook = UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID];
+            DataModelNotebook editNotebook = UserInfoManager.User_EncryptedNotebooks[lb_ID];
 
             editNotebook.Notebook_Value = EncryptionManager.EncryptAES256Salt(newNotes, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
 
             DatabaseIntance.databaseManager.SaveChanges();
         }
 
-        public static List<DataModelNotebook> GetAllNotebooks()
+        public static List<DataModelNotebook> GetAllDecryptedNotebooks()
         {
-            List<DataModelNotebook> allNotebooks = new List<DataModelNotebook>();
+            //is must, otherwise I destroy me the linked objects from the db
+            List<DataModelNotebook> allNotebooksFromDB = new List<DataModelNotebook>();
+            List<DataModelNotebook> allNotebooksLocal = new List<DataModelNotebook>();
 
-            allNotebooks = DatabaseIntance.databaseManager.Notebook.Where(n => n.Notebook_Owner_ID == UserInfoManager.UserID).ToList();
 
-            for (int i = 0; i < allNotebooks.Count; i++)
+            allNotebooksFromDB = DatabaseIntance.databaseManager.Notebook.Where(n => n.Notebook_Owner_ID == UserInfoManager.UserID).ToList();
+
+            //(i got this mf bug finally)   list is copied and decrypted at the same time
+            for (int index = 0; index < allNotebooksFromDB.Count; index++)
             {
-                allNotebooks[i].Notebook_Name = EncryptionManager.DecryptAES256Salt(allNotebooks[i].Notebook_Name, new NetworkCredential("", UserInfoManager.UserPassword).Password, UserInfoManager.UserSalt);
+                allNotebooksLocal.Add(new DataModelNotebook()
+                {
+                    Notebook_ID = allNotebooksFromDB[index].Notebook_ID,
+
+                    Notebook_Name = EncryptionManager.DecryptAES256Salt
+                                                                    (allNotebooksFromDB[index].Notebook_Name,
+                                                                    new NetworkCredential("", UserInfoManager.UserPassword).Password,
+                                                                    UserInfoManager.UserSalt),
+
+                    Notebook_Value = EncryptionManager.DecryptAES256Salt
+                                                                    (allNotebooksFromDB[index].Notebook_Value,
+                                                                    new NetworkCredential("", UserInfoManager.UserPassword).Password,
+                                                                    UserInfoManager.UserSalt),
+                    Notebook_Owner_ID = UserInfoManager.UserID
+
+                });                    
             }
 
-            UserInfoManager.User_Notebooks = allNotebooks;
+            UserInfoManager.User_DecryptedNotebooks = allNotebooksFromDB;
 
-            return allNotebooks;
+            return allNotebooksLocal;
+        }
+        public static List<DataModelNotebook> GetAllEncryptedNotebooks()
+        {
+            List<DataModelNotebook> allNotebooksFromDB = new List<DataModelNotebook>();
+
+            allNotebooksFromDB = DatabaseIntance.databaseManager.Notebook.Where(n => n.Notebook_Owner_ID == UserInfoManager.UserID).ToList();
+
+            UserInfoManager.User_EncryptedNotebooks = allNotebooksFromDB;
+
+            return allNotebooksFromDB;
         }
 
         public static string ReadNotesFromNotebook()
@@ -65,13 +94,13 @@ namespace LIB_Encrypted_Notebook.Database
             };
 
             DatabaseIntance.databaseManager.Notebook.Add(newNotebook);
-            DatabaseIntance.databaseManager.SaveChanges();   
+            DatabaseIntance.databaseManager.SaveChanges();
         }
 
         public static void DeleteNotebook()
         {
-            DatabaseIntance.databaseManager.Notebook.Remove(UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID]);
-            DatabaseIntance.databaseManager.SaveChanges();
+            //DatabaseIntance.databaseManager.Notebook.Remove(UserInfoManager.User_Notebooks[UserInfoManager.UserActivNotebookID]);
+            //DatabaseIntance.databaseManager.SaveChanges();
         }
     }
 }

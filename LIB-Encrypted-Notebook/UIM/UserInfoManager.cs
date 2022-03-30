@@ -11,15 +11,18 @@ namespace LIB_Encrypted_Notebook.UIM
         public static string UserActivNotebook;
         public static byte[] UserSalt;
         public static int UserActivNotebookID;
-        public static List<DataModelNotebook> User_Notebooks;
+        public static List<DataModelNotebook> User_DecryptedNotebooks;
+        public static List<DataModelNotebook> User_EncryptedNotebooks;
         public static DataModelUser ActivUserDataModel;
 
         public static void UserLogout()
         {
+            UserID = -1;
             UserName = null;
             UserActivNotebook = null;
-            UserID = -1;
-            UserSalt = new byte[] { 0 };
+            UserSalt = null;  
+            UserActivNotebookID = -1;
+            User_DecryptedNotebooks = null;
             ActivUserDataModel = null;
             UserPassword.Clear();
             GC.Collect();

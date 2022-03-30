@@ -19,7 +19,8 @@ namespace LIB_Encrypted_Notebook.Database
             byte[] salt = EncryptionManager.GetNewSalt();
             exportData.Add(SaltSplitSystem.SplitByteArrayIntoString(salt));
             string new_EncryptedNotebookValue, new_EncryptedNotebookName;
-            List<DataModelNotebook> allNotebooks = Notebook.GetAllNotebooks();
+
+            List<DataModelNotebook> allNotebooks = Notebook.GetAllDecryptedNotebooks();
 
             foreach (DataModelNotebook notebook in allNotebooks)
             {

@@ -39,6 +39,8 @@ namespace WPF_Encrypted_Notebook.Pages
                     UserInfoManager.UserName = tb_username.Text.ToLower();
                     UserInfoManager.UserPassword = tb_password.SecurePassword;
                     UserInfoManager.UserSalt = SaltSplitSystem.SplitStringIntoByteArray(UserInfoManager.ActivUserDataModel.User_Salt.Salt_Value);
+                    Notebook.GetAllDecryptedNotebooks();
+                    Notebook.GetAllEncryptedNotebooks();
                     mw.pageMirror.Content = new PageUserHome();
                 }
                 else

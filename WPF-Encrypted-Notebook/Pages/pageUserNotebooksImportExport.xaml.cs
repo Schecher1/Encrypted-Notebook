@@ -9,8 +9,10 @@ using WPF_Encrypted_Notebook.Classes;
 
 namespace WPF_Encrypted_Notebook.Pages
 {
+
     public partial class PageUserNotebooksImportExport : Page
     {
+    public static Notebook notebook = new Notebook();
         MainWindow mw = (MainWindow)System.Windows.Application.Current.MainWindow;
         DatabaseManager db;
         FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -26,7 +28,7 @@ namespace WPF_Encrypted_Notebook.Pages
         private void LoadNotebooks()
         {
             lb_notebooks.Items.Clear();
-            List<DataModelNotebook> notebooks = Notebook.GetAllNotebooks();
+            List<DataModelNotebook> notebooks = Notebook.GetAllDecryptedNotebooks();
             foreach (var notebook in notebooks)
                 lb_notebooks.Items.Add(notebook.Notebook_Name);
         }
