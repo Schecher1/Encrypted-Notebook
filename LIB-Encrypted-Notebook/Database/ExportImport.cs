@@ -20,7 +20,7 @@ namespace LIB_Encrypted_Notebook.Database
             exportData.Add(SaltSplitSystem.SplitByteArrayIntoString(salt));
             string new_EncryptedNotebookValue, new_EncryptedNotebookName;
 
-            List<DataModelNotebook> allNotebooks = Notebook.GetAllDecryptedNotebooks();
+            List<DataModelNotebook> allNotebooks = Notebook.GetAllEncryptedNotebooks();
 
             foreach (DataModelNotebook notebook in allNotebooks)
             {
@@ -51,7 +51,50 @@ namespace LIB_Encrypted_Notebook.Database
 
         public static List<string> ExportCustomNotebooks(string exportPassword, List<string> listOfNotebooks)
         {
-            return null;
+            List<string> exportData = new List<string>();
+            byte[] salt = EncryptionManager.GetNewSalt();
+            exportData.Add(SaltSplitSystem.SplitByteArrayIntoString(salt));
+            string new_EncryptedNotebookValue, new_EncryptedNotebookName;
+
+            List<DataModelNotebook> allNotebooks = Notebook.GetAllEncryptedNotebooks();
+            List<DataModelNotebook> customNotebooks = new List<DataModelNotebook>();
+
+            //get each notebook, from all
+            foreach (string notebookName in listOfNotebooks)
+            {
+                string encryptedName = EncryptionManager.EncryptAES256Salt(
+                                                                    notebookName,
+                                                                    new NetworkCredential("", UserInfoManager.UserPassword).Password,
+                                                                    UserInfoManager.UserSalt);
+
+                customNotebooks.Add(allNotebooks.First(n => n.Notebook_Name == encryptedName));
+            }
+
+            foreach (DataModelNotebook notebook in customNotebooks)
+            {
+                new_EncryptedNotebookName =
+                    EncryptionManager.EncryptAES256Salt(
+                        EncryptionManager.DecryptAES256Salt(
+                            notebook.Notebook_Name,
+                            new NetworkCredential("", UserInfoManager.UserPassword).Password,
+                            UserInfoManager.UserSalt),
+                        exportPassword,
+                        salt);
+
+                new_EncryptedNotebookValue =
+                        EncryptionManager.EncryptAES256Salt(
+                            EncryptionManager.DecryptAES256Salt(
+                                notebook.Notebook_Value,
+                                new NetworkCredential("", UserInfoManager.UserPassword).Password,
+                                UserInfoManager.UserSalt),
+                        exportPassword,
+                        salt);
+
+
+                exportData.Add($"{new_EncryptedNotebookName}:{new_EncryptedNotebookValue}");
+            }
+
+            return exportData;
         }
 
         public static object ImportAllNotebooks(string importPassword, List<string> importData)
@@ -96,6 +139,8 @@ namespace LIB_Encrypted_Notebook.Database
 
                     DatabaseIntance.databaseManager.Notebook.Add(newNotebook);
                 }
+
+                DatabaseIntance.databaseManager.SaveChanges();
                 return "";
             }
             catch { return null; }
