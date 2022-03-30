@@ -39,66 +39,66 @@ Or [press here](https://github.com/Schecher1/Encrypted-Notebook/blob/master/DOWN
 ### Server-Login:
 -If there is no password just leave it blank (I don't recommend this)                                                                 <br/>
 -The "Save" button saves everything except the password, because it will be saved unencrypted in a file (because of the security)     <br/>
-![Server-Login](IMAGES/Version%202.2.0.0/ServerLogin.PNG)
+![Server-Login](IMAGES/Version%202.2.0.0/PageServerLogin.PNG)
 
 ### Server-Login-OneWayLogin:                                                                                
-![Server-Configure](IMAGES/Version%202.2.0.0/ServerLoginOneWayLogin.PNG)
+![Server-Configure](IMAGES/Version%202.2.0.0/PageServerLoginOneWayLogin.PNG)
 
 ### Server-Create-OneWayLoginKey:                                                                                   
-![Server-Configure](IMAGES/Version%202.2.0.0/ServerCreateOneWayLoginKey.PNG)	
+![Server-Configure](IMAGES/Version%202.2.0.0/PageServerLoginOneWayLoginCreate.PNG)	
 
 ### Server-Configure:
 -This appears only once when the database is new!                                                                                     <br/>
-![Server-Configure](IMAGES/Version%201.0.0.0/ServerConfigure.PNG)
+![Server-Configure](IMAGES/Version%201.0.0.0/PageServerIsNotConfigured.PNG)
 
 
 ### User-Create:
-![User-Create](IMAGES/Version%201.0.0.0/UserCreate.PNG)
+![User-Create](IMAGES/Version%201.0.0.0/PageUserCreate.PNG)
 
 
 ### User-Login:
-![User-Login](IMAGES/Version%201.0.0.0/UserLogin.PNG)
+![User-Login](IMAGES/Version%201.0.0.0/PageUserLogin.PNG)
 
 
 ### User-Home:
-![User-Home](IMAGES/Version%202.1.0.0/UserHomeMenu.PNG)
+![User-Home](IMAGES/Version%202.1.0.0/PageUserHome.PNG)
 
 
 ### Import-Export:
 -All or specific notebooks can be exported																								<br/>
 -The file is of course also re-encrypted																									<br/>
 -DO NOT EDIT THE FILE OR EVERYTHING WILL BE GONE																			<br/>
-![Import-Export](IMAGES/Version%202.1.0.0/NotebookExportImport.PNG)
+![Import-Export](IMAGES/Version%202.1.0.0/PageUserNotebookHome.PNG)
 
 
 ### User-Delete:
 -Do it carefully! it cannot be undone!																										<br/>
-![User-Delete](IMAGES/Version%202.1.0.0/UserDelete.PNG)
+![User-Delete](IMAGES/Version%202.1.0.0/PageUserDelete.PNG)
 
 
 ### Notebook:
 -Under the "Create" button, there is a text box where you should enter the name of the new notebook.                                  <br/>
 -When you delete a notebook, you must select it from the list.                                                                        <br/>
 -THERE IS NO AUTOMATIC SAVE, whenever you want to change your book, save it first.                                                    <br/>
-![Notebook](IMAGES/Version%202.1.0.0/Notebook.PNG)
+![Notebook](IMAGES/Version%202.1.0.0/PageUserNotebookHome.PNG)
 
 
 ### Database-Tables:
-![Database-Tables](IMAGES/Version%202.2.0.0/DB-Tables.PNG)
+![Database-Tables](IMAGES/Version%201.0.0.0/DatabaseTables.PNG)
 
 
 ### Database-Notebooks:
 -The "NULL" means that the notebook is empty                                                                                          <br/>
-![Database-Notebooks](IMAGES/Version%201.1.0.0/DB-Table-Notebooks.PNG)
+![Database-Notebooks](IMAGES/Version%201.1.0.0/DatabaseTablesNotebooks.PNG)
 
 
 ### Database-Setting:
-![Database-Setting](IMAGES/Version%201.1.0.0/DB-Table-Setting.PNG)
+![Database-Setting](IMAGES/Version%201.1.0.0/DatabaseTablesSetting.PNG)
 
 
 ### Database-Salt:
-![Database-Setting](IMAGES/Version%201.0.0.0/DB-Table-Salt.PNG)
+![Database-Setting](IMAGES/Version%201.0.0.0/DatabaseTablesSalt.PNG)
 
-
+*HASH* => Means that there would be the hash. Which I have not shown because otherwise the ASIC table would be broken.
 ### Database-User:
-![Database-User](IMAGES/Version%201.0.0.0/DB-Table-User.PNG)
+![Database-User](IMAGES/Version%201.0.0.0/DatabaseTablesUser.PNG)
