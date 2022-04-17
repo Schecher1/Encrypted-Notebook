@@ -10,7 +10,7 @@ But I am not liable if any data stays encrypted forever. Because it is a real en
 ## Application description:
 This is not a normal notebook/diary, no it is encrypted! 
 In addition, you are the own master of your data, because you have to host the database by yourself!
-I had an older version of this ( meanwhile archive) that only ran on RAW MySQL querys, which is everything except nice. 
+I had an older version of this (meanwhile archive [press here to see](https://github.com/Schecher1/Encrypted-Notebook-MySqlData)) that only ran on RAW MySQL querys, which is everything except nice. 
 That's why I decided to switch to EF (Entity Framework) and using DotNET 6. 
 Don't forget, all important data is hashed or encrypted, with SHA512 or AES256 (with salt).
 And if you are bored with MySQL, you only have to change the NuGet package!
@@ -24,7 +24,7 @@ Just enter them and press the button. Everything will be automatically set up fo
 
 ## How to Download:
 Go to the "DOWNLOAD" folder and download any version (for security the latest one). 
-Or [press here](https://github.com/Schecher1/Encrypted-Notebook/blob/master/DOWNLOADS/Latest%20Version.zip) to download if you want the latest one
+Or [press here](https://github.com/Schecher1/Encrypted-Notebook-EntityFramework/blob/master/DOWNLOADS/Latest%20Version.zip) to download if you want the latest one
 
 
 ## Features:
