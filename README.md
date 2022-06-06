@@ -24,7 +24,7 @@ Just enter them and press the button. Everything will be automatically set up fo
 
 ## How to Download:
 Go to the "DOWNLOAD" folder and download any version (for security the latest one). 
-Or [press here](https://github.com/Schecher1/Encrypted-Notebook-EntityFramework/blob/master/DOWNLOADS/Latest%20Version.zip) to download if you want the latest one
+Or [press here](https://github.com/Schecher1/Encrypted-Notebook-EntityFramework/releases/download/Encrypted-Notebook/Program.zip) to download if you want the latest one
 
 
 ## Features:
